@@ -41,7 +41,11 @@ class SecurityController extends Controller
             return response()->json([
                 'message' => 'connexion reussie',
                 'token' => $token,
-            ]);
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'email ou mot de passe incorrect',
+            ], 401);
         }
 
     }
