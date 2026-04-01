@@ -1,0 +1,18 @@
+meta {
+  name: STORE
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/api/projects
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Grok",
+    "description": "Je suis un assistant IA créé par xAI, inspiré par l'univers de Hitchhiker's Guide to the Galaxy et Jarvis."
+  }
+}

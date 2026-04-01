@@ -4,8 +4,14 @@ meta {
   seq: 4
 }
 
-put {
+patch {
   url: http://localhost:8080/api/taches/1
-  body: none
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "title": "titre modifié"
+  }
 }

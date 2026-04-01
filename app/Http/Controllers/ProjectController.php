@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProjectStoreRequest;
+use App\Http\Requests\ProjectUpdateRequest;
 use App\Http\Resources\ProjectResource;
 use App\Models\Project;
-use Illuminate\Http\Request;
 use Ramsey\Collection\Collection;
 
 class ProjectController extends Controller
@@ -20,19 +21,18 @@ class ProjectController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProjectStoreRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+
+        $project = $request->user()->projects()->create($validatedData);
+
+        return response()->json([
+            'message' => 'projet créer avec succès',
+            'project' => new ProjectResource($project)
+        ]);
     }
 
     /**
@@ -40,23 +40,22 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Project $project)
-    {
-        //
+        return new ProjectResource($project);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Project $project)
+    public function update(ProjectUpdateRequest $request, Project $project)
     {
-        //
+        $validatedData = $request->validated();
+
+        $project->update($validatedData);
+
+        return response()->json([
+            'message' => 'projet mis à jour avec succès',
+            'project' => new ProjectResource($project)
+        ]);
     }
 
     /**
