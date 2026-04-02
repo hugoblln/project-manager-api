@@ -4,8 +4,14 @@ meta {
   seq: 4
 }
 
-put {
-  url: http://localhost:8080/api/projects
-  body: none
+patch {
+  url: http://localhost:8080/api/projects/1
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "name": "name modifié 2"
+  }
 }

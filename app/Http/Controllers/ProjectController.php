@@ -67,6 +67,6 @@ class ProjectController extends Controller
 
         return response()->json([
             'message' => 'projet supprimé'
-        ]);
+        ],200);
     }
 }
